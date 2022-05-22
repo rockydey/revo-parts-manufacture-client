@@ -20,7 +20,7 @@ const Part = ({ part }) => {
                 <p>Minimum Orders: {minimumOrder}</p>
                 <p>{description}</p>
                 <div className="card-actions justify-end">
-                    <button onClick={() => handlePurchase(id)} className="btn btn-primary">Purchase</button>
+                    <button onClick={() => handlePurchase(id)} className="btn bg-gradient-to-r from-secondary to-primary text-white outline-0">Purchase</button>
                 </div>
             </div>
         </div>
