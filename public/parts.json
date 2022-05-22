@@ -1,0 +1,56 @@
+[
+    {
+      "id": "628a49dfb391c862ba13bbdc",
+      "picture": "https://i.ibb.co/48yRZhR/brake.jpg",
+      "minimumOrder": 800,
+      "quantity": 9904,
+      "name": "Brake",
+      "price": 643,
+      "description": "These are glycol-based fluids with a boiling point of 2200 degrees before saturation with moisture and 1500 degrees after."
+    },
+    {
+      "id": "628a49df5220ea1e92501616",
+      "picture": "https://i.ibb.co/tqKZpxy/car-transmission-system.jpg",
+      "minimumOrder": 800,
+      "quantity": 9578,
+      "name": "Transmission System",
+      "price": 709,
+      "description": "High quality transmission spare parts gearbox synchronizer assembly A-5065 dump truck spare parts."
+    },
+    {
+      "id": "628a49df143e584268d6f4c4",
+      "picture": "https://i.ibb.co/p0tR5V9/engine.jpg",
+      "minimumOrder": 800,
+      "quantity": 3142,
+      "name": "Engine",
+      "price": 660,
+      "description": "Abril flying auto parts motorcycle engine assembly apply to for Suzuki Vstrom DL1000 100cc 150cc 200cc."
+    },
+    {
+      "id": "628a49df667f2cc298d49228",
+      "picture": "https://i.ibb.co/J7cYZB7/fuel-gauge.jpg",
+      "minimumOrder": 800,
+      "quantity": 9627,
+      "name": "Fuel Gauge",
+      "price": 129,
+      "description": "The Bosch SP0F000056 is a Style Line 2' Electrical Fuel Level Gauge. It features a display of E, 1/4, 1/2, 3/4, and F with a 60 dial sweep. Requires fuel level sender SP0F000013."
+    },
+    {
+      "id": "628a49df27aed663abe90471",
+      "picture": "https://i.ibb.co/FmpwCjV/headlights.jpg",
+      "minimumOrder": 800,
+      "quantity": 6037,
+      "name": "Headlights",
+      "price": 556,
+      "description": "New product lanch cars Front light LED HeadLights original lens For audi A6 2015-2018 upgrade A6 Xenon up to LED."
+    },
+    {
+      "id": "628a49dfc1797fef6034a746",
+      "picture": "https://i.ibb.co/fqFBpVS/windshield.jpg",
+      "minimumOrder": 800,
+      "quantity": 8276,
+      "name": "Windshield Wipers",
+      "price": 57,
+      "description": "Factory wholesale car wiper blades Universal Soft Wiper Auto Car Windshield Wipers."
+    }
+  ]
