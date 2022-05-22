@@ -4,7 +4,7 @@ import notFound from '../../assists/404.jpg';
 
 const NotFound = () => {
     return (
-        <div className='flex flex-col items-center justify-center bg-slate-900 h-[100vh]'>
+        <div className='flex flex-col items-center justify-center bg-slate-900 py-10'>
             <div className='mb-8 text-center'>
                 <h1 className='md:text-3xl text-xl text-white font-semibold'>Opps! Sorry, Your Page isn't Found.</h1>
             </div>

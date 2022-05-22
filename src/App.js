@@ -7,10 +7,13 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import Home from './Pages/Home/Home';
 import MyPortfolio from './Pages/MyPortfolio/MyPortfolio';
 import NotFound from './Pages/NotFound/NotFound';
+import Footer from './Pages/Shared/Footer';
+import Header from './Pages/Shared/Header/Header';
 
 function App() {
   return (
     <div>
+      <Header />
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/home' element={<Home />}></Route>
@@ -21,6 +24,7 @@ function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='*' element={<NotFound />}></Route>
       </Routes>
+      <Footer />
     </div>
   );
 }
