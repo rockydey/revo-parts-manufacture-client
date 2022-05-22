@@ -11,7 +11,7 @@ const Part = ({ part }) => {
     };
 
     return (
-        <div className="card bg-base-100 shadow-xl">
+        <section className="card bg-base-100 shadow-xl">
             <figure><img src={picture} alt={name} /></figure>
             <div className="card-body">
                 <h2 className="card-title uppercase">{name}</h2>
@@ -23,7 +23,7 @@ const Part = ({ part }) => {
                     <button onClick={() => handlePurchase(id)} className="btn bg-gradient-to-r from-secondary to-primary text-white outline-0">Purchase</button>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 
