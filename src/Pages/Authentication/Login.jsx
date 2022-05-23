@@ -11,14 +11,14 @@ const Login = () => {
 
     return (
         <section className='h-[100vh] md:flex items-center justify-center lg:mx-0 md:mx-10'>
-            <div className='w-[45vh]'>
-                <div class="rounded-2xl bg-base-100 shadow-xl h-[500px]">
-                    <div class="card-body">
+            <div className=''>
+                <div className="rounded-2xl bg-base-100 shadow-xl h-[500px]">
+                    <div className="card-body">
                         <h2 className='card-title uppercase tracking-wider'>Log in to your account</h2>
                         <div className='mt-3 text-center'>
-                            <button class="btn btn-outline btn-primary rounded-full w-full">Continue with Google</button>
+                            <button className="btn btn-outline btn-primary rounded-full w-full">Continue with Google</button>
                         </div>
-                        <div class="divider mb-0">OR</div>
+                        <div className="divider mb-0">OR</div>
                         <form onSubmit={handleSubmit(onSubmit)} className=''>
                             <div className="form-control w-full max-w-xs">
                                 <label className="label">
@@ -32,16 +32,11 @@ const Login = () => {
                                         required: {
                                             value: true,
                                             message: "Email is required."
-                                        },
-                                        // pattern: {
-                                        //     value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                                        //     message: "Provide valid email address."
-                                        // }
+                                        }
                                     })}
                                 />
                                 <label className="label">
                                     {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email?.message}</span>}
-                                    {/* {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email?.message}</span>} */}
                                 </label>
                             </div>
 
@@ -57,16 +52,11 @@ const Login = () => {
                                         required: {
                                             value: true,
                                             message: "Password is required."
-                                        },
-                                        // pattern: {
-                                        //     value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                                        //     message: "Provide valid email address."
-                                        // }
+                                        }
                                     })}
                                 />
                                 <label className="label">
                                     {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password?.message}</span>}
-                                    {/* {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email?.message}</span>} */}
                                 </label>
                             </div>
                             <a href='/' className='text-sm hover:text-primary font-semibold'>Forget Your Password?</a>
@@ -75,12 +65,12 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-            <div className='w-[45vh]'>
-                <div class="rounded-2xl bg-gradient-to-r from-primary to-secondary shadow-xl h-[500px] flex items-center justify-center">
-                    <div class="card-body">
-                        <h2 class="text-center text-3xl text-base-100 font-bold">Hello, Friend!</h2>
-                        <p className='text-center text-base-200 text-base mt-3'>Don't have an account? <br /> Enter your personal details and start journey with us</p>
-                        <Link to='/signUp' className='mt-3 btn rounded-full glass text-base-100'>Sign Up</Link>
+            <div className='w-96'>
+                <div className="rounded-2xl bg-gradient-to-r from-primary to-secondary shadow-xl h-[500px] flex items-center justify-center">
+                    <div className="card-body flex flex-col items-center">
+                        <h2 className="text-center text-3xl text-base-100 font-bold">Hello, Friend!</h2>
+                        <p className='text-center text-base-200 text-base mt-4'>Don't have an account? <br /> Enter your personal details and start journey with us</p>
+                        <Link to='/signUp' className='mt-4 w-3/4 btn rounded-full glass text-base-100  tracking-wider'>Create New Account</Link>
                     </div>
                 </div>
             </div>
