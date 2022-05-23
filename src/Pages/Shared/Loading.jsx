@@ -1,15 +1,16 @@
 import React from 'react';
 import { css } from "@emotion/react";
-import DotLoader from "react-spinners/DotLoader";
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 const override = css`
   display: block;
+  margin: 2px;
 `;
 
 const Loading = () => {
     return (
-        <div className="h-40 flex items-center justify-center">
-            <DotLoader color='#cc2b5e' css={override} size={60} />
+        <div className="h-60 flex items-center justify-center">
+            <PacmanLoader color='#cc2b5e' css={override} size={25} />
         </div>
     );
 };

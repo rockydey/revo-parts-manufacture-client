@@ -1,13 +1,35 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
 
 const Login = () => {
-
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    let from = location.state?.from?.pathname || "/";
+
     const onSubmit = data => {
         console.log(data);
     };
+
+    if (gUser) {
+        console.log(gUser);
+        navigate(from, { replace: true });
+    }
+
+    let logInError;
+    if (gError) {
+        logInError = <p className='text-red-500'>{gError?.message}</p>
+    }
+
+    if (gLoading) {
+        return <Loading></Loading>
+    }
 
     return (
         <section className='h-[100vh] md:flex items-center justify-center lg:mx-0 md:mx-10'>
@@ -16,7 +38,7 @@ const Login = () => {
                     <div className="card-body">
                         <h2 className='card-title uppercase tracking-wider'>Log in to your account</h2>
                         <div className='mt-3 text-center'>
-                            <button className="btn btn-outline btn-primary rounded-full w-full">Continue with Google</button>
+                            <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-primary rounded-full w-full">Continue with Google</button>
                         </div>
                         <div className="divider mb-0">OR</div>
                         <form onSubmit={handleSubmit(onSubmit)} className=''>
@@ -60,6 +82,7 @@ const Login = () => {
                                 </label>
                             </div>
                             <a href='/' className='text-sm hover:text-primary font-semibold'>Forget Your Password?</a>
+                            {logInError}
                             <input className='btn w-full rounded-full outline-0 btn-primary mt-3' type="submit" value='Login' />
                         </form>
                     </div>

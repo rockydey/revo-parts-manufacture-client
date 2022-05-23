@@ -1,13 +1,32 @@
 import React from 'react';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
 
 const SignUp = () => {
-
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const navigate = useNavigate();
+
     const onSubmit = data => {
         console.log(data);
     };
+
+    if (gUser) {
+        console.log(gUser);
+        navigate('/');
+    }
+
+    let signUpError;
+    if (gError) {
+        signUpError = <p className='text-red-500'>{gError?.message}</p>
+    }
+
+    if (gLoading) {
+        return <Loading />
+    }
 
     return (
         <section className='h-[100vh] bg-gradient-to-r from-primary to-secondary flex items-center justify-center'>
@@ -17,7 +36,7 @@ const SignUp = () => {
                     <h2 className="card-title tracking-wider">Get Started Now</h2>
                     <p className='text-xs font-semibold'>Already have an account? <Link to='/login' className='text-primary'>Login Now</Link></p>
                     <div className='mt-3 text-center'>
-                        <button className="btn btn-outline btn-primary rounded-full w-full">Continue with Google</button>
+                        <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-primary rounded-full w-full">Continue with Google</button>
                     </div>
                     <div className="divider mb-0">OR</div>
                     <form onSubmit={handleSubmit(onSubmit)} className=''>
@@ -90,7 +109,7 @@ const SignUp = () => {
                                 {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password?.message}</span>}
                             </label>
                         </div>
-
+                        {signUpError}
                         <input className='btn w-full text-white rounded-full outline-0 bg-gradient-to-r from-secondary to-primary mt-3' type="submit" value='Get Started' />
                     </form>
                 </div>
