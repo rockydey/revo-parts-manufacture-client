@@ -9,7 +9,7 @@ const override = css`
 
 const Loading = () => {
     return (
-        <div className="h-60 flex items-center justify-center">
+        <div className="h-[460px] flex items-center justify-center">
             <PacmanLoader color='#cc2b5e' css={override} size={25} />
         </div>
     );

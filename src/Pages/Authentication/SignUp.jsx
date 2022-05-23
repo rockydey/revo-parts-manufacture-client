@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -12,7 +13,7 @@ const SignUp = () => {
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [updateProfile, updating, updatedError] = useUpdateProfile(auth);
 
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -21,7 +22,7 @@ const SignUp = () => {
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
-        console.log(data);
+        toast("Verification Email Sent!!");
     };
 
     if (user || gUser) {
@@ -37,12 +38,12 @@ const SignUp = () => {
     }
 
     return (
-        <section className='h-[100vh] bg-gradient-to-r from-primary to-secondary flex items-center justify-center'>
+        <section className='py-28 bg-gradient-to-r from-primary to-secondary flex items-center justify-center'>
             <div className="card lg:w-3/12 md:w-1/2 w-11/12 bg-base-100 shadow-xl">
                 <div className="card-body">
 
                     <h2 className="card-title tracking-wider">Get Started Now</h2>
-                    <p className='text-xs font-semibold'>Already have an account? <Link to='/login' className='text-primary'>Login Now</Link></p>
+                    <p className='text-sm font-semibold'>Already have an account? <Link to='/login' className='text-primary'>Login Now</Link></p>
                     <div className='mt-3 text-center'>
                         <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-primary rounded-full w-full">Continue with Google</button>
                     </div>

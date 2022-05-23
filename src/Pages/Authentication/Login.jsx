@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -13,6 +14,9 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
+
+    const [email, setEmail] = useState('');
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
@@ -21,7 +25,13 @@ const Login = () => {
     let from = location.state?.from?.pathname || "/";
 
     const onSubmit = data => {
+        setEmail(data.email);
         signInWithEmailAndPassword(data.email, data.password);
+    };
+
+    const handleResetEmail = async () => {
+        await sendPasswordResetEmail(email);
+        toast.success("Reset email sent!");
     };
 
     if (user || gUser) {
@@ -29,15 +39,15 @@ const Login = () => {
         navigate(from, { replace: true });
     }
     let logInError;
-    if (error || gError) {
-        logInError = <p className='text-red-500'>{error?.message || gError?.message}</p>
+    if (error || gError || resetError) {
+        logInError = <p className='text-red-500'>{error?.message || gError?.message || resetError?.message}</p>
     }
-    if (loading || gLoading) {
+    if (loading || gLoading || sending) {
         return <Loading></Loading>
     }
 
     return (
-        <section className='h-[100vh] md:flex items-center justify-center lg:mx-0 md:mx-10'>
+        <section className='md:flex items-center justify-center lg:mx-0 md:mx-10 my-28'>
             <div className=''>
                 <div className="rounded-2xl bg-base-100 shadow-xl h-[500px]">
                     <div className="card-body">
@@ -86,14 +96,14 @@ const Login = () => {
                                     {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password?.message}</span>}
                                 </label>
                             </div>
-                            <a href='/' className='text-sm hover:text-primary font-semibold'>Forget Your Password?</a>
+                            <p onClick={handleResetEmail} className='cursor-pointer text-sm hover:text-primary font-semibold'>Forget Your Password?</p>
                             {logInError}
                             <input className='btn w-full rounded-full outline-0 btn-primary mt-3' type="submit" value='Login' />
                         </form>
                     </div>
                 </div>
             </div>
-            <div className='w-96'>
+            <div className=''>
                 <div className="rounded-2xl bg-gradient-to-r from-primary to-secondary shadow-xl h-[500px] flex items-center justify-center">
                     <div className="card-body flex flex-col items-center">
                         <h2 className="text-center text-3xl text-base-100 font-bold">Hello, Friend!</h2>

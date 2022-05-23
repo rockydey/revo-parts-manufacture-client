@@ -16,15 +16,15 @@ const Purchase = () => {
 
     return (
         <section className='h-[600px] flex items-center lg:mx-20 lg:my-0 md:m-16 m-10 z-10'>
-            <div class="card lg:card-side bg-base-100 shadow-xl">
+            <div className="card lg:card-side bg-base-100 shadow-xl">
                 <figure className='lg:w-3/5'><img src={purchase.picture} alt={purchase.name} /></figure>
-                <div class="m-5 flex flex-col justify-center">
-                    <h2 class="card-title uppercase">{purchase.name}</h2>
+                <div className="m-5 flex flex-col justify-center">
+                    <h2 className="card-title uppercase">{purchase.name}</h2>
                     <p className='lg:my-2 mb-1'><span className='font-semibold'>Price: </span> ${purchase.price} <span>/per unit</span></p>
                     <p className='lg:my-2 mb-1'><span className='font-semibold'>Quantity: </span> {purchase.quantity}</p>
                     <p className='lg:my-2 mb-1'><span className='font-semibold'>Minimum Order: </span> {purchase.minimumOrder}</p>
                     <p className='lg:my-2 mb-1'><span className='font-semibold'>Description: </span> {purchase.description}</p>
-                    <div class="card-actions justify-start">
+                    <div className="card-actions justify-start">
                         <label
                             htmlFor="booking-modal"
                             onClick={() => setOpen(true)}

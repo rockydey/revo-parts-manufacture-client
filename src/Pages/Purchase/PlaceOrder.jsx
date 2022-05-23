@@ -59,11 +59,11 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
 
     return (
         <div>
-            <input type="checkbox" id="booking-modal" class="modal-toggle" />
-            <div class="modal modal-bottom sm:modal-middle">
-                <div class="modal-box">
-                    <label for="booking-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 class="text-lg font-bold tracking-wider">Checkout for {purchase.name}</h3>
+            <input type="checkbox" id="booking-modal" className="modal-toggle" />
+            <div className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <h3 className="text-lg font-bold tracking-wider">Checkout for {purchase.name}</h3>
                     <form onSubmit={handleSubmit(onSubmit)} className=''>
                         <div className="form-control w-full">
                             <label className="label">
