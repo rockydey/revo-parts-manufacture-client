@@ -3,23 +3,15 @@ import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../../firebase.init';
-import Loading from '../Loading';
 import './Header.css';
 
 const Header = () => {
-    const [user, loading, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
 
     const [isNavExpanded, setIsNavExpanded] = useState(false);
 
     const logout = () => {
         signOut(auth);
-    }
-
-    if (loading) {
-        return <Loading></Loading>
-    }
-    if (error) {
-        alert(error?.message);
     }
 
     return (
@@ -44,7 +36,7 @@ const Header = () => {
                         />
                     </svg>
                 </button>
-                <div className={isNavExpanded ? "ml-auto navigation-menu expanded" : "ml-auto navigation-menu"}>
+                <div className={isNavExpanded ? "ml-auto navigation-menu expanded z-20" : "ml-auto navigation-menu"}>
                     <ul className='lg:flex items-center p-0 hidden lg:mx-28'>
                         <li className='mx-5'>
                             <Link className='block w-full text-lg' to="/home">Home</Link>
