@@ -7,7 +7,7 @@ import CountUp from 'react-countup';
 const BusinessGrowth = () => {
     return (
         <section style={{ background: `url(${businessBg})`, backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
-            <div className='my-20 lg:mx-28 md:mx-12 mx-6'>
+            <div className='my-20 lg:mx-28 md:mx-12'>
                 <div className="divider">
                     <h1 className='text-center text-3xl uppercase tracking-wide'>Our Business Growth</h1>
                 </div>

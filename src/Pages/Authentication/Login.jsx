@@ -1,12 +1,19 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 
 const Login = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
     const location = useLocation();
@@ -14,20 +21,18 @@ const Login = () => {
     let from = location.state?.from?.pathname || "/";
 
     const onSubmit = data => {
-        console.log(data);
+        signInWithEmailAndPassword(data.email, data.password);
     };
 
-    if (gUser) {
-        console.log(gUser);
+    if (user || gUser) {
+        console.log(user || gUser);
         navigate(from, { replace: true });
     }
-
     let logInError;
-    if (gError) {
-        logInError = <p className='text-red-500'>{gError?.message}</p>
+    if (error || gError) {
+        logInError = <p className='text-red-500'>{error?.message || gError?.message}</p>
     }
-
-    if (gLoading) {
+    if (loading || gLoading) {
         return <Loading></Loading>
     }
 

@@ -1,9 +1,27 @@
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../../firebase.init';
+import Loading from '../Loading';
 import './Header.css';
 
 const Header = () => {
-    const [isNavExpanded, setIsNavExpanded] = useState(false)
+    const [user, loading, error] = useAuthState(auth);
+
+    const [isNavExpanded, setIsNavExpanded] = useState(false);
+
+    const logout = () => {
+        signOut(auth);
+    }
+
+    if (loading) {
+        return <Loading></Loading>
+    }
+    if (error) {
+        alert(error?.message);
+    }
+
     return (
         <header className='bg-slate-900' style={{ boxShadow: "0 2px 2px 2px rgba(15, 23, 42, 0.25)" }}>
             <nav className="h-[60px] w-full flex items-center relative py-2 px-0 text-slate-100">
@@ -27,21 +45,23 @@ const Header = () => {
                     </svg>
                 </button>
                 <div className={isNavExpanded ? "ml-auto navigation-menu expanded" : "ml-auto navigation-menu"}>
-                    <ul className='lg:flex p-0 hidden lg:mx-28'>
+                    <ul className='lg:flex items-center p-0 hidden lg:mx-28'>
                         <li className='mx-5'>
                             <Link className='block w-full text-lg' to="/home">Home</Link>
                         </li>
                         <li className='mx-5'>
                             <Link className='block w-full text-lg' to="/blogs">Blogs</Link>
                         </li>
-                        <li className='mx-5'>
-                            <Link className='block w-full text-lg' to="/dashboard">Dashboard</Link>
-                        </li>
+                        {
+                            user && <li className='mx-5'>
+                                <Link className='block w-full text-lg' to="/dashboard">Dashboard</Link>
+                            </li>
+                        }
                         <li className='mx-5'>
                             <Link className='block w-full text-lg' to="/myPortfolio">My Portfolio</Link>
                         </li>
                         <li className='ml-5'>
-                            <Link className='block w-full text-lg' to="/login">Login</Link>
+                            {user ? <button onClick={logout} className='btn btn-outline btn-primary lg:w-full text-base rounded-full text-white inline-block text-center mt-3 lg:mt-0'>Sign Out</button> : <Link className='block w-full text-lg' to="/login">Login</Link>}
                         </li>
                     </ul>
                 </div>
