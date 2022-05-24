@@ -30,22 +30,35 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
                 }
             });
 
-        const partsOrder = {
+        const ordersInfo = {
             partsId: purchase._id,
-            name: purchase.name,
+            name: user.displayName,
             email: user.email,
+            productName: purchase.name,
             orders: orderQuantity,
             image: purchase.picture,
             address: data.address,
-            phone: data.number
+            phone: data.phone
         };
+
+        fetch('http://localhost:5000/users', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(ordersInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
 
         fetch('http://localhost:5000/purchase', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(partsOrder)
+            body: JSON.stringify(ordersInfo)
         })
             .then(res => res.json())
             .then(data => {
@@ -106,10 +119,24 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
 
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text font-semibold">Order Quantity</span>
+                                <span className="label-text font-semibold">Product Quantity</span>
                             </label>
                             <input
                                 type="text"
+                                className="input input-bordered w-full"
+                                {...register("productQuantity")}
+                                value={purchase.quantity}
+                                disabled
+                            />
+                        </div>
+
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text font-semibold">Order Quantity</span>
+                            </label>
+                            <input
+                                type="number"
+                                placeholder='Minimum 400 orders required'
                                 className="input input-bordered w-full"
                                 {...register("orderQuantity", {
                                     max: {
@@ -138,9 +165,10 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
                                 <span className="label-text font-semibold">Phone Number</span>
                             </label>
                             <input
-                                type="text"
+                                type="number"
+                                placeholder='Enter your phone number'
                                 className="input input-bordered w-full"
-                                {...register("number", {
+                                {...register("phone", {
                                     required: {
                                         value: true,
                                         message: "Phone Number is required."
@@ -148,7 +176,7 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
                                 })}
                             />
                             <label className="label">
-                                {errors.number?.type === 'required' && <span className="label-text-alt text-red-500">{errors.number?.message}</span>}
+                                {errors.phone?.type === 'required' && <span className="label-text-alt text-red-500">{errors.phone?.message}</span>}
                             </label>
                         </div>
 
@@ -158,6 +186,7 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
                             </label>
                             <textarea
                                 type="text"
+                                placeholder='Enter your present address'
                                 className="input input-bordered w-full"
                                 {...register("address", {
                                     required: {

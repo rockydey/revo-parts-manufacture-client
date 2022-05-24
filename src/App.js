@@ -13,6 +13,13 @@ import Header from './Pages/Shared/Header/Header';
 import RequireAuth from './Pages/Shared/RequireAuth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MyProfile from './Pages/Dashboard/MyProfile';
+import MyOrders from './Pages/Dashboard/MyOrders';
+import AddReview from './Pages/Dashboard/AddReview';
+import AllUsers from './Pages/Dashboard/AllUsers';
+import ManageOrders from './Pages/Dashboard/ManageOrders';
+import AddProduct from './Pages/Dashboard/AddProduct';
+import ManageProducts from './Pages/Dashboard/ManageProducts';
 
 function App() {
   return (
@@ -22,7 +29,17 @@ function App() {
         <Route path='/' element={<Home />}></Route>
         <Route path='/home' element={<Home />}></Route>
         <Route path='/blogs' element={<Blogs />}></Route>
-        <Route path='/dashboard' element={<Dashboard />}></Route>
+        <Route path='/dashboard' element={<RequireAuth>
+          <Dashboard />
+        </RequireAuth>}>
+          <Route index element={<MyProfile />}></Route>
+          <Route path='myOrders' element={<MyOrders />}></Route>
+          <Route path='addReview' element={<AddReview />}></Route>
+          <Route path='users' element={<AllUsers />}></Route>
+          <Route path='manageOrders' element={<ManageOrders />}></Route>
+          <Route path='addProduct' element={<AddProduct />}></Route>
+          <Route path='manageProducts' element={<ManageProducts />}></Route>
+        </Route>
         <Route path='/purchase/:id' element={<RequireAuth>
           <Purchase />
         </RequireAuth>}></Route>
