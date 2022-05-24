@@ -35,6 +35,7 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
             name: user.displayName,
             email: user.email,
             productName: purchase.name,
+            price: purchase.price,
             orders: orderQuantity,
             image: purchase.picture,
             address: data.address,

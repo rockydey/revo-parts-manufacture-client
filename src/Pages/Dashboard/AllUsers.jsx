@@ -15,8 +15,8 @@ const AllUsers = () => {
             <h1 className='text-2xl mt-3 font-semibold'>All Users</h1>
             <div className='border-b-2 mt-3'></div>
             <div className='mt-3'>
-                <div class="overflow-x-auto">
-                    <table class="table w-full">
+                <div className="overflow-x-auto">
+                    <table className="table table-zebra w-full">
                         <thead>
                             <tr>
                                 <th></th>

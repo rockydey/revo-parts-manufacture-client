@@ -20,6 +20,7 @@ import AllUsers from './Pages/Dashboard/AllUsers';
 import ManageOrders from './Pages/Dashboard/ManageOrders';
 import AddProduct from './Pages/Dashboard/AddProduct';
 import ManageProducts from './Pages/Dashboard/ManageProducts';
+import EditProfile from './Pages/Dashboard/EditProfile';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path='addProduct' element={<AddProduct />}></Route>
           <Route path='manageProducts' element={<ManageProducts />}></Route>
         </Route>
+        <Route path='/dashboard/editProfile' element={<EditProfile />}></Route>
         <Route path='/purchase/:id' element={<RequireAuth>
           <Purchase />
         </RequireAuth>}></Route>
