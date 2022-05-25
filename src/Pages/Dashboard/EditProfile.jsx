@@ -14,48 +14,48 @@ const EditProfile = () => {
     const imageStorageKey = '88904b39388d3bf1f4d02eb518ebcd7a';
 
     const onSubmit = data => {
-        // const image = data.image[0];
-        // const formData = new FormData();
-        // formData.append('image', image);
-        // const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
-        // fetch(url, {
-        //     method: 'POST',
-        //     body: formData
-        // })
-        //     .then(res => res.json())
-        //     .then(result => {
-        //         if (result.success) {
-        //             const img = result.data.url;
-        //             const user = {
-        //                 name: data.name,
-        //                 email: data.email,
-        //                 institutionName: data.institutionName,
-        //                 department: data.department,
-        //                 number: data.number,
-        //                 address: data.address,
-        //                 linkedIn: data.linkedIn,
-        //                 image: img
-        //             };
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.success) {
+                    const img = result.data.url;
+                    const updateUser = {
+                        name: user?.displayName,
+                        email: user?.email,
+                        institutionName: data.institutionName,
+                        department: data.department,
+                        number: data.number,
+                        address: data.address,
+                        linkedIn: data.linkedIn,
+                        image: img
+                    };
 
-        //             fetch('http://localhost:5000/user', {
-        //                 method: 'PUT',
-        //                 headers: {
-        //                     'content-type': 'application/json',
-        //                 },
-        //                 body: JSON.stringify(user)
-        //             })
-        //                 .then(res => res.json())
-        //                 .then(inserted => {
-        //                     if (inserted.insertedId) {
-        //                         toast.success("Your Profile has been updated.");
-        //                         reset();
-        //                         navigate('/dashboard');
-        //                     } else {
-        //                         toast.error("Opps! failed to update profile.");
-        //                     }
-        //                 });
-        //         }
-        //     });
+                    fetch('http://localhost:5000/user', {
+                        method: 'PUT',
+                        headers: {
+                            'content-type': 'application/json',
+                        },
+                        body: JSON.stringify(updateUser)
+                    })
+                        .then(res => res.json())
+                        .then(inserted => {
+                            if (inserted.acknowledged===true) {
+                                navigate('/dashboard');
+                                toast.success("Your Profile has been updated.");
+                                reset();
+                            } else {
+                                toast.error("Opps! failed to update profile.");
+                            }
+                        });
+                }
+            });
     };
     if (loading) {
         return <Loading />
