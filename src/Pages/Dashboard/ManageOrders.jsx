@@ -42,6 +42,7 @@ const ManageOrders = () => {
                                     order={order}
                                     index={index}
                                     setDeleteModal={setDeleteModal}
+                                    refetch={refetch}
                                 ></ManageOrderRow>)
                             }
                         </tbody>

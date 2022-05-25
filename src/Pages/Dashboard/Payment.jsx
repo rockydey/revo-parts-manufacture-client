@@ -25,7 +25,7 @@ const Payment = () => {
 
     return (
         <div className=''>
-            <div class="card md:w-1/2 mt-5 bg-base-100 shadow-xl">
+            <div class="card lg:w-1/2 mt-5 bg-base-100 shadow-xl">
                 <div class="card-body">
                     <h1 className='card-title tracking-wider text-2xl text-secondary'>Hello, {order.name}</h1>
                     <h2 class="tracking-wider font-semibold text-lg">Please Pay For <span className='text-primary'>Cars {order.productName}</span></h2>
