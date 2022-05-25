@@ -15,21 +15,6 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
         const newQuantity = parseInt(quantity) - parseInt(orderQuantity);
         const newItem = { quantity: newQuantity, ...rest };
 
-        const url = `http://localhost:5000/purchase/${purchase._id}`;
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newItem)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.acknowledged === true) {
-                    refetch();
-                }
-            });
-
         const ordersInfo = {
             partsId: purchase._id,
             name: user.displayName,
@@ -51,7 +36,7 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
             })
 
         fetch('http://localhost:5000/purchase', {
@@ -65,6 +50,23 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
             .then(data => {
                 if (data.success) {
                     toast.success("Your order has been recoded.");
+                    const url = `http://localhost:5000/purchase/${purchase._id}`;
+                    fetch(url, {
+                        method: 'PUT',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(newItem)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.acknowledged === true) {
+                                refetch();
+                            }
+                        });
+                }
+                else {
+                    toast.error("Your order already exits.")
                 }
                 setOpen(false);
                 refetch();

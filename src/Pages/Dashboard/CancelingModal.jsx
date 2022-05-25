@@ -11,7 +11,7 @@ const CancelingModal = ({ cancelModal, setCancelModal, refetch }) => {
             .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
-                    toast.success("Your order has been cancel successfully");
+                    toast.success("Your order has been canceled successfully");
                     setCancelModal(null);
                     refetch();
                 }
@@ -19,13 +19,13 @@ const CancelingModal = ({ cancelModal, setCancelModal, refetch }) => {
     }
     return (
         <div>
-            <input type="checkbox" id="delete-modal" className="modal-toggle" />
+            <input type="checkbox" id="cancel-modal" className="modal-toggle" />
             <div className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg tracking-wider">Are you sure you want to cancel Car <span className='text-red-500'>{productName}</span> order!</h3>
                     <div className="modal-action">
                         <button onClick={() => handleCancelOrder(_id)} className="btn btn-sm text-white btn-error">Yes</button>
-                        <label htmlFor="delete-modal" className="btn btn-sm text-white">No</label>
+                        <label htmlFor="cancel-modal" className="btn btn-sm text-white">No</label>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,6 @@ import './Header.css';
 
 const Header = () => {
     const [user] = useAuthState(auth);
-
     const [isNavExpanded, setIsNavExpanded] = useState(false);
 
     const logout = () => {
@@ -53,7 +52,7 @@ const Header = () => {
                             <Link className='block w-full text-lg' to="/myPortfolio">My Portfolio</Link>
                         </li>
                         <li className='ml-5'>
-                            {user ? <button onClick={logout} className='btn btn-outline btn-primary lg:w-full text-base rounded-full text-white inline-block text-center mt-3 lg:mt-0 tracking-wider'>Sign Out {user?.displayName.split(' ')[0]}</button> : <Link className='block w-full text-lg' to="/login">Login</Link>}
+                            {user ? <button onClick={logout} className='btn btn-outline btn-primary lg:w-full text-base rounded-full text-white inline-block text-center mt-3 lg:mt-0 tracking-wider'>Sign Out {user?.displayName?.split(' ')[0]}</button> : <Link className='block w-full text-lg' to="/login">Login</Link>}
                         </li>
                     </ul>
                 </div>

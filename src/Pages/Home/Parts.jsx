@@ -15,7 +15,7 @@ const Parts = () => {
             {
                 isLoading ? <Loading /> : <div id='parts' className='mt-12 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5'>
                     {
-                        parts.slice(0, 6).map(part => <Part
+                        parts.map(part => <Part
                             key={part._id}
                             part={part}
                         ></Part>)

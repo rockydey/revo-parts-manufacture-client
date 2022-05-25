@@ -6,7 +6,7 @@ import Loading from '../Shared/Loading';
 
 const MyProfile = () => {
     const [user, loading] = useAuthState(auth);
-    const naviagte = useNavigate('');
+    const navigate = useNavigate('');
 
     if (loading) {
         return <Loading />
@@ -29,7 +29,7 @@ const MyProfile = () => {
                     <p className='text-sm md:text-lg mb-3'>{user?.displayName}</p>
                     <label className='font-semibold text-xs'>Email Address</label>
                     <p className='text-sm md:text-lg mb-3'>{user?.email}</p>
-                    <button onClick={() => naviagte('/dashboard/editProfile')} className='btn btn-secondary text-white tracking-wider'>Edit Profile</button>
+                    <button onClick={() => navigate('/dashboard/editProfile')} className='btn btn-secondary text-white tracking-wider'>Update Profile</button>
                 </div>
             </div>
         </div>
