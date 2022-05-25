@@ -8,7 +8,12 @@ import Loading from '../Shared/Loading';
 const MyProfile = () => {
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate('');
-    const { data: updatedUser, isLoading } = useQuery('updatedUser', () => fetch(`http://localhost:5000/user?email=${user.email}`).then(res => res.json()));
+    const { data: updatedUser, isLoading } = useQuery('updatedUser', () => fetch(`http://localhost:5000/user?email=${user.email}`, {
+        method: "GET",
+        headers: {
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => res.json()));
 
     if (loading || isLoading) {
         return <Loading />

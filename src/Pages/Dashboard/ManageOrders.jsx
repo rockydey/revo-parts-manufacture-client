@@ -7,7 +7,12 @@ import ManageOrderRow from './ManageOrderRow';
 const ManageOrders = () => {
     const [deleteModal, setDeleteModal] = useState(null);
     const url = `http://localhost:5000/order`
-    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(url).then(res => res.json()));
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(url, {
+        method: "GET",
+        headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`
+        }
+    }).then(res => res.json()));
 
     if (isLoading) {
         return <Loading />
@@ -17,8 +22,8 @@ const ManageOrders = () => {
             <h1 className='text-2xl mt-3 font-semibold'>All Orders</h1>
             <div className='border-b-2 mt-3'></div>
             <div>
-                <div class="overflow-x-auto">
-                    <table class="table table-zebra w-full">
+                <div className="overflow-x-auto">
+                    <table className="table table-zebra w-full">
                         <thead>
                             <tr>
                                 <th></th>

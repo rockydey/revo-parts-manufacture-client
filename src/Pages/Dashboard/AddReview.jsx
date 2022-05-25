@@ -32,14 +32,15 @@ const AddReview = () => {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
+                            authorization: `Bearer ${localStorage.getItem('accessToken')}`
                         },
                         body: JSON.stringify(review)
                     })
                         .then(res => res.json())
                         .then(inserted => {
-                            if (inserted.insertedId) {
-                                toast.success("Thank you for your feedback.");
+                            if (inserted.acknowledged) {
                                 reset();
+                                toast.success("Thank you for your feedback.");
                             } else {
                                 toast.error("Opps! failed to add feedback.");
                             }
@@ -107,11 +108,11 @@ const AddReview = () => {
                                     value: true,
                                     message: "Rating is required."
                                 },
-                                max:{
+                                max: {
                                     value: 5,
                                     message: "Maximum 5 start rating only"
                                 },
-                                min:{
+                                min: {
                                     value: 1,
                                     message: "Minimum 1 start rating only"
                                 }

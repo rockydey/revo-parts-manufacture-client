@@ -30,7 +30,8 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
         fetch('http://localhost:5000/users', {
             method: "POST",
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`
             },
             body: JSON.stringify(ordersInfo)
         })
@@ -42,7 +43,8 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
         fetch('http://localhost:5000/purchase', {
             method: "POST",
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`
             },
             body: JSON.stringify(ordersInfo)
         })
@@ -54,7 +56,8 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
                     fetch(url, {
                         method: 'PUT',
                         headers: {
-                            'content-type': 'application/json'
+                            'content-type': 'application/json',
+                            authorization: `Bearer ${localStorage.getItem("accessToken")}`
                         },
                         body: JSON.stringify(newItem)
                     })

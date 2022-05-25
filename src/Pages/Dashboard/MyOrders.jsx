@@ -1,6 +1,8 @@
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import CancelingModal from './CancelingModal';
@@ -9,8 +11,21 @@ import OrderRow from './OrderRow';
 const MyOrders = () => {
     const [user, loading] = useAuthState(auth);
     const [cancelModal, setCancelModal] = useState(null);
+    const navigate = useNavigate();
     const url = `http://localhost:5000/purchase?email=${user?.email}`
-    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(url).then(res => res.json()));
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(url, {
+        method: "GET",
+        headers: {
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => {
+        if (res.status === 401 || res.status === 403) {
+            signOut(auth);
+            localStorage.removeItem('accessToken');
+            navigate('/');
+        }
+        return res.json()
+    }));
 
     if (loading || isLoading) {
         return <Loading />

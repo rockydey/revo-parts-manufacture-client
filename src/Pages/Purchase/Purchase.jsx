@@ -8,7 +8,12 @@ const Purchase = () => {
     const { id } = useParams();
     const [open, setOpen] = useState(false);
 
-    const { data: purchase, isLoading, refetch } = useQuery("purchase", () => fetch(`http://localhost:5000/purchase/${id}`).then(res => res.json()));
+    const { data: purchase, isLoading, refetch } = useQuery("purchase", () => fetch(`http://localhost:5000/purchase/${id}`, {
+        method: "GET",
+        headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`
+        },
+    }).then(res => res.json()));
 
     if (isLoading) {
         return <Loading />
