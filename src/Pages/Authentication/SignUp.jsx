@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import { toast } from 'react-toastify';
+import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -15,6 +16,7 @@ const SignUp = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [updateProfile, updating, updatedError] = useUpdateProfile(auth);
+    const [token] = useToken(user || gUser);
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
@@ -25,8 +27,7 @@ const SignUp = () => {
         toast("Verification Email Sent!!");
     };
 
-    if (user || gUser) {
-        console.log(user || gUser);
+    if (token) {
         navigate('/');
     }
     let signUpError;

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import { toast } from 'react-toastify';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -15,6 +16,7 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
     const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
+    const [token] = useToken(user || gUser);
 
     const [email, setEmail] = useState('');
 
@@ -23,6 +25,12 @@ const Login = () => {
     const location = useLocation();
 
     let from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate]);
 
     const onSubmit = data => {
         setEmail(data.email);
@@ -34,10 +42,6 @@ const Login = () => {
         toast.success("Reset email sent!");
     };
 
-    if (user || gUser) {
-        console.log(user || gUser);
-        navigate(from, { replace: true });
-    }
     let logInError;
     if (error || gError || resetError) {
         logInError = <p className='text-red-500'>{error?.message || gError?.message || resetError?.message}</p>

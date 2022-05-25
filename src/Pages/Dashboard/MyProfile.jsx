@@ -21,7 +21,7 @@ const MyProfile = () => {
             <div className='mt-3'>
                 <div className="avatar">
                     <div className="w-48 rounded-full">
-                        <img src={updatedUser[0].image || user?.photoURL || 'https://api.lorem.space/image/face?hash=92310'} alt='Profile' />
+                        <img src={updatedUser[0]?.image || user?.photoURL || 'https://api.lorem.space/image/face?hash=92310'} alt='Profile' />
                     </div>
                 </div>
                 <div className=''>
@@ -32,27 +32,27 @@ const MyProfile = () => {
                     <label className='font-semibold text-xs'>Email Address</label>
                     <p className='text-sm md:text-lg mb-2'>{user?.email}</p>
                     {
-                        updatedUser[0].number && <span>
+                        updatedUser[0]?.number && <span>
                             <label className='font-semibold text-xs'>Phone</label>
-                            <p className='text-sm md:text-lg mb-2'>{updatedUser[0].number}</p>
+                            <p className='text-sm md:text-lg mb-2'>{updatedUser[0]?.number}</p>
                         </span>
                     }
                     {
-                        updatedUser[0].institutionName && <span>
+                        updatedUser[0]?.institutionName && <span>
                             <label className='font-semibold text-xs'>Institution Name</label>
-                            <p className='text-sm md:text-lg mb-2'>{updatedUser[0].institutionName}</p>
+                            <p className='text-sm md:text-lg mb-2'>{updatedUser[0]?.institutionName}</p>
                         </span>
                     }
                     {
-                        updatedUser[0].department && <span>
+                        updatedUser[0]?.department && <span>
                             <label className='font-semibold text-xs'>Department or, Degree</label>
-                            <p className='text-sm md:text-lg mb-2'>{updatedUser[0].department}</p>
+                            <p className='text-sm md:text-lg mb-2'>{updatedUser[0]?.department}</p>
                         </span>
                     }
                     {
-                        updatedUser[0].address && <span>
+                        updatedUser[0]?.address && <span>
                             <label className='font-semibold text-xs'>Address</label>
-                            <p className='text-sm md:text-lg mb-2'>{updatedUser[0].address}</p>
+                            <p className='text-sm md:text-lg mb-2'>{updatedUser[0]?.address}</p>
                         </span>
                     }
                     <button onClick={() => navigate('/dashboard/editProfile')} className='btn btn-secondary text-white tracking-wider mb-5'>Update Profile</button>
