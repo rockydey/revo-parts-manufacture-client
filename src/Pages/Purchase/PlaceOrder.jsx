@@ -6,7 +6,7 @@ import auth from '../../firebase.init';
 
 const PlaceOrder = ({ setOpen, purchase, refetch }) => {
     const [user] = useAuthState(auth);
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit } = useForm({ mode: "onBlur" });
 
     const onSubmit = data => {
         const orderQuantity = data.orderQuantity;
@@ -207,7 +207,7 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
                         </div>
 
 
-                        <input className='btn text-white outline-0 btn-primary mt-3' type="submit" value='Place Order' />
+                        <input className='btn text-white outline-0 btn-primary mt-3' disabled={errors.orderQuantity?.message} type="submit" value='Place Order' />
                     </form>
                 </div>
             </div>

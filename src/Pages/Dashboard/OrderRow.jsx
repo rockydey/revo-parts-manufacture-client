@@ -18,7 +18,7 @@ const OrderRow = ({ order, index, setCancelModal }) => {
             <td>${parseInt(order.orders) * parseInt(order.price)}</td>
             <td>
                 {(order.price && !order.paid) && <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-success btn-sm text-white'>Pay</button></Link>}
-                {(order.price && order.paid && !order.approve) && <span className='text-orange-500 btn-sm font-semibold text-base'>Padding</span>}
+                {(order.price && order.paid && !order.approve) && <span className='text-orange-500 btn-sm font-semibold text-base'>Pending</span>}
                 {(order.price && order.paid && order.approve) && <span className='text-success btn-sm font-semibold text-base'>Shipped</span>}
             </td>
             <td><label onClick={() => setCancelModal(order)} disabled={order.paid} htmlFor="cancel-modal" className="btn btn-sm text-white btn-error">Cancel</label></td>
