@@ -1,10 +1,7 @@
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
-import auth from '../../firebase.init';
 
-const UserRow = ({ user, index, refetch }) => {
-    const [dUser] = useAuthState(auth);
+const UserRow = ({ user, index, refetch, setRemoveModal }) => {
     const { name, email, role } = user;
 
     const makeAdmin = () => {
@@ -31,11 +28,11 @@ const UserRow = ({ user, index, refetch }) => {
     return (
         <tr>
             <th>{index + 1}</th>
-            <td>{name || dUser?.displayName}</td>
+            <td>{name}</td>
             <td>{email}</td>
             <td>{role !== 'admin' ? <button onClick={makeAdmin} className="btn text-white btn-sm btn-secondary">Make Admin</button> : <button className="btn text-white btn-sm btn-success">Admin</button>}</td>
             <td>
-                <label className="btn btn-sm text-white btn-error">Remove</label>
+                <label htmlFor="remove-modal" onClick={() => setRemoveModal(user)} className="btn btn-sm text-white btn-error">Remove</label>
             </td>
         </tr>
     );

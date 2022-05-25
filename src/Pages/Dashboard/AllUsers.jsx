@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
+import RemoveModal from './RemoveModal';
 import UserRow from './UserRow';
 
 const AllUsers = () => {
@@ -10,6 +11,7 @@ const AllUsers = () => {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
     }).then(res => res.json()));
+    const [removeModal, setRemoveModal] = useState(null);
 
     if (isLoading) {
         return <Loading />
@@ -38,11 +40,19 @@ const AllUsers = () => {
                                     user={user}
                                     index={index}
                                     refetch={refetch}
+                                    setRemoveModal={setRemoveModal}
                                 ></UserRow>)
                             }
                         </tbody>
                     </table>
                 </div>
+                {
+                    removeModal && <RemoveModal
+                        removeModal={removeModal}
+                        setRemoveModal={setRemoveModal}
+                        refetch={refetch}
+                    ></RemoveModal>
+                }
             </div>
         </div>
     );

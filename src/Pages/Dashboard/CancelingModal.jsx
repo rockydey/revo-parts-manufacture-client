@@ -19,7 +19,8 @@ const CancelingModal = ({ cancelModal, setCancelModal, refetch }) => {
                     refetch();
                 }
             })
-    }
+    };
+
     return (
         <div>
             <input type="checkbox" id="cancel-modal" className="modal-toggle" />
