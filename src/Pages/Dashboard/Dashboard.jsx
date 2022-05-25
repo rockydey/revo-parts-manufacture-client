@@ -1,8 +1,19 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { Link, Outlet } from 'react-router-dom';
+import auth from '../../firebase.init';
+import useAdmin from '../../hooks/useAdmin';
+import Loading from '../Shared/Loading';
 
 const Dashboard = () => {
+    const [user] = useAuthState(auth);
+    const [admin, adminLoading] = useAdmin(user);
+
+    if (adminLoading) {
+        return <Loading />
+    }
+
     return (
         <div className="drawer drawer-mobile">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -21,12 +32,12 @@ const Dashboard = () => {
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
                     <li><Link to='/dashboard'>My Profile</Link></li>
-                    <li><Link to='/dashboard/myOrders'>My Orders</Link></li>
-                    <li><Link to='/dashboard/addReview'>Add a Review</Link></li>
-                    <li><Link to='/dashboard/users'>All Users</Link></li>
-                    <li><Link to='/dashboard/manageOrders'>Manage All Orders</Link></li>
-                    <li><Link to='/dashboard/addProduct'>Add a Product</Link></li>
-                    <li><Link to='/dashboard/manageProducts'>Manage Products</Link></li>
+                    {!admin && <li><Link to='/dashboard/myOrders'>My Orders</Link></li>}
+                    {!admin && <li><Link to='/dashboard/addReview'>Add a Review</Link></li>}
+                    {admin && <li><Link to='/dashboard/users'>All Users</Link></li>}
+                    {admin && <li><Link to='/dashboard/manageOrders'>Manage All Orders</Link></li>}
+                    {admin && <li><Link to='/dashboard/addProduct'>Add a Product</Link></li>}
+                    {admin && <li><Link to='/dashboard/manageProducts'>Manage Products</Link></li>}
                 </ul>
             </div>
         </div>
