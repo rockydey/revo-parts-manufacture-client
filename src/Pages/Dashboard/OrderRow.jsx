@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const OrderRow = ({ order, index, setCancelModal }) => {
 
@@ -15,8 +16,11 @@ const OrderRow = ({ order, index, setCancelModal }) => {
             <td>{order.productName}</td>
             <td>{order.orders}</td>
             <td>${parseInt(order.orders) * parseInt(order.price)}</td>
-            <td><button className='btn btn-success btn-sm text-white'>Pay</button></td>
-            <td><label onClick={() => setCancelModal(order)} htmlFor="cancel-modal" className="btn btn-sm text-white btn-error">Cancel</label></td>
+            <td>
+                {(order.price && !order.paid) && <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-success btn-sm text-white'>Pay</button></Link>}
+                {(order.price && order.paid) && <span className='text-success btn-sm'>Paid</span>}
+            </td>
+            <td><label onClick={() => setCancelModal(order)} disabled={order.paid} htmlFor="cancel-modal" className="btn btn-sm text-white btn-error">Cancel</label></td>
         </tr>
     );
 };
