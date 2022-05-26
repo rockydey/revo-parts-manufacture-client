@@ -14,7 +14,7 @@ const BusinessGrowth = () => {
                 <div className='mt-12 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-10'>
                     <div className='flex flex-col items-center'>
                         <p className='text-8xl text-secondary mb-3'><AiOutlineFlag /></p>
-                        <CountUp start={20} end={78} delay={1}>
+                        <CountUp start={25} end={78} delay={1}>
                             {({ countUpRef }) => (
                                 <div className='text-5xl text-slate-900 font-semibold'>
                                     <span ref={countUpRef} />
@@ -26,7 +26,7 @@ const BusinessGrowth = () => {
                     </div>
                     <div className='flex flex-col items-center'>
                         <p className='text-8xl text-secondary mb-3'><BsPeopleFill /></p>
-                        <CountUp start={20} end={38} delay={1}>
+                        <CountUp start={18} end={38} delay={1}>
                             {({ countUpRef }) => (
                                 <div className='text-5xl text-slate-900 font-semibold'>
                                     <span ref={countUpRef} />
@@ -38,7 +38,7 @@ const BusinessGrowth = () => {
                     </div>
                     <div className='flex flex-col items-center'>
                         <p className='text-8xl text-secondary mb-3'><AiOutlineDollarCircle /></p>
-                        <CountUp start={20} end={115} delay={1}>
+                        <CountUp start={35} end={115} delay={1}>
                             {({ countUpRef }) => (
                                 <div className='text-5xl text-slate-900 font-semibold'>
                                     <span ref={countUpRef} />

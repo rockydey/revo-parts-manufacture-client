@@ -15,7 +15,7 @@ const MyPortfolio = () => {
                     <div className='w-96 border-2 border-secondary rounded-xl lg:mb-0 mb-5'>
                         <img className='rounded-xl p-1' src={myPic} alt="" />
                     </div>
-                    <div>
+                    <div className='ml-5'>
                         <h1 className='text-xl mb-2'><span className='font-semibold'>Name:</span> Rocky Dey</h1>
                         <p className='mb-2'><span className='font-semibold'>Email:</span> coderrocky25@gmail.com</p>
                         <p className='mb-2'><span className='font-semibold'>Institute Name:</span> Bangabandhu Sheikh Mujibur Rahman Science and Technology University, Gopalganj</p>
@@ -43,7 +43,7 @@ const MyPortfolio = () => {
                             <figure><img src={website1} alt="Shoes" /></figure>
                             <div class="card-body">
                                 <div class="card-actions justify-end">
-                                    <a href='https://laptop-warehouse-management.web.app/' class="btn btn-secondary">See website</a>
+                                    <a target='_blank' href='https://laptop-warehouse-management.web.app/' class="btn btn-secondary">See website</a>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +53,7 @@ const MyPortfolio = () => {
                             <figure><img src={website2} alt="Shoes" /></figure>
                             <div class="card-body">
                                 <div class="card-actions justify-end">
-                                    <a href='https://photography-portfolio-website.web.app/' class="btn btn-secondary">See website</a>
+                                    <a target='_blank' href='https://photography-portfolio-website.web.app/' class="btn btn-secondary">See website</a>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +63,7 @@ const MyPortfolio = () => {
                             <figure><img src={website3} alt="Shoes" /></figure>
                             <div class="card-body">
                                 <div class="card-actions justify-end">
-                                    <a href='https://enfield-bullet-exploration-rocky.netlify.app/home' class="btn btn-secondary">See website</a>
+                                    <a target='_blank' href='https://enfield-bullet-exploration-rocky.netlify.app/home' class="btn btn-secondary">See website</a>
                                 </div>
                             </div>
                         </div>
