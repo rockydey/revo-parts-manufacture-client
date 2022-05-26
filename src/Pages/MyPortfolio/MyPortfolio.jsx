@@ -1,5 +1,5 @@
 import React from 'react';
-import myPic from '../../assists/myPic.png';
+import myPic from '../../assists/myPic.jpg';
 import website1 from '../../assists/website1.png';
 import website2 from '../../assists/website2.png';
 import website3 from '../../assists/website3.png';
