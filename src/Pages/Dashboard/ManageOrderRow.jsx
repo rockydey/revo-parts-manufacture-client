@@ -7,7 +7,7 @@ const ManageOrderRow = ({ order, index, setDeleteModal, refetch }) => {
         const approve = {
             approve: true
         };
-        const url = `http://localhost:5000/order/${id}`;
+        const url = `https://salty-scrubland-47217.herokuapp.com/order/${id}`;
         fetch(url, {
             method: "PUT",
             headers: {

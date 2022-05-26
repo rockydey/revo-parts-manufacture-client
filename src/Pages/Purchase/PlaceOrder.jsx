@@ -27,7 +27,7 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
             phone: data.phone
         };
 
-        fetch('http://localhost:5000/users', {
+        fetch('https://salty-scrubland-47217.herokuapp.com/users', {
             method: "POST",
             headers: {
                 'content-type': 'application/json',
@@ -40,7 +40,7 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
                 console.log(data);
             })
 
-        fetch('http://localhost:5000/purchase', {
+        fetch('https://salty-scrubland-47217.herokuapp.com/purchase', {
             method: "POST",
             headers: {
                 'content-type': 'application/json',
@@ -52,7 +52,7 @@ const PlaceOrder = ({ setOpen, purchase, refetch }) => {
             .then(data => {
                 if (data.success) {
                     toast.success("Your order has been recoded.");
-                    const url = `http://localhost:5000/purchase/${purchase._id}`;
+                    const url = `https://salty-scrubland-47217.herokuapp.com/purchase/${purchase._id}`;
                     fetch(url, {
                         method: 'PUT',
                         headers: {

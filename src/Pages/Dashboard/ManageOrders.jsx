@@ -6,7 +6,7 @@ import ManageOrderRow from './ManageOrderRow';
 
 const ManageOrders = () => {
     const [deleteModal, setDeleteModal] = useState(null);
-    const url = `http://localhost:5000/order`
+    const url = `https://salty-scrubland-47217.herokuapp.com/order`
     const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(url, {
         method: "GET",
         headers: {

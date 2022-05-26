@@ -4,7 +4,7 @@ import Loading from '../Shared/Loading';
 import ManagePart from './ManagePart';
 
 const ManageProducts = () => {
-    const { data: manageParts, isLoading } = useQuery('manageParts', () => fetch('http://localhost:5000/managePart').then(res => res.json()))
+    const { data: manageParts, isLoading } = useQuery('manageParts', () => fetch('https://salty-scrubland-47217.herokuapp.com/managePart').then(res => res.json()))
     return (
         <div>
             <h1 className='text-2xl mt-3 font-semibold'>Manage Products</h1>

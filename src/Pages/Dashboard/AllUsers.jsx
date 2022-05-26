@@ -5,7 +5,7 @@ import RemoveModal from './RemoveModal';
 import UserRow from './UserRow';
 
 const AllUsers = () => {
-    const { data: users, isLoading, refetch } = useQuery("users", () => fetch("http://localhost:5000/users", {
+    const { data: users, isLoading, refetch } = useQuery("users", () => fetch("https://salty-scrubland-47217.herokuapp.com/users", {
         method: "GET",
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

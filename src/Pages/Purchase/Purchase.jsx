@@ -15,7 +15,7 @@ const Purchase = () => {
     const [open, setOpen] = useState(false);
     const updateStockRef = useRef('');
 
-    const { data: purchase, isLoading, refetch } = useQuery("purchase", () => fetch(`http://localhost:5000/purchase/${id}`, {
+    const { data: purchase, isLoading, refetch } = useQuery("purchase", () => fetch(`https://salty-scrubland-47217.herokuapp.com/purchase/${id}`, {
         method: "GET",
         headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`
@@ -34,7 +34,7 @@ const Purchase = () => {
             quantity: parseInt(updateStock) + parseInt(purchase.quantity)
         }
 
-        const url = `http://localhost:5000/update/${id}`;
+        const url = `https://salty-scrubland-47217.herokuapp.com/update/${id}`;
         fetch(url, {
             method: "PUT",
             headers: {

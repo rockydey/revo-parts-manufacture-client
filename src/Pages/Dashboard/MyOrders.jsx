@@ -12,7 +12,7 @@ const MyOrders = () => {
     const [user, loading] = useAuthState(auth);
     const [cancelModal, setCancelModal] = useState(null);
     const navigate = useNavigate();
-    const url = `http://localhost:5000/purchase?email=${user?.email}`
+    const url = `https://salty-scrubland-47217.herokuapp.com/purchase?email=${user?.email}`
     const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(url, {
         method: "GET",
         headers: {

@@ -5,7 +5,7 @@ import Part from './Part';
 
 const Parts = () => {
 
-    const { data: parts, isLoading } = useQuery('parts', () => fetch('http://localhost:5000/part').then(res => res.json()))
+    const { data: parts, isLoading } = useQuery('parts', () => fetch('https://salty-scrubland-47217.herokuapp.com/part').then(res => res.json()))
 
     const start = parts?.length - 6;
     const end = parts?.length;

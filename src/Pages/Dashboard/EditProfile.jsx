@@ -37,7 +37,7 @@ const EditProfile = () => {
                         image: img
                     };
 
-                    fetch('http://localhost:5000/user', {
+                    fetch('https://salty-scrubland-47217.herokuapp.com/user', {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',

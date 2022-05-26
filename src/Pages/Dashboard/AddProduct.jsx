@@ -29,7 +29,7 @@ const AddProduct = () => {
                         picture: img
                     };
 
-                    fetch('http://localhost:5000/part', {
+                    fetch('https://salty-scrubland-47217.herokuapp.com/part', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

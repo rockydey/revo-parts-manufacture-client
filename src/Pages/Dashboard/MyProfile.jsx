@@ -8,7 +8,7 @@ import Loading from '../Shared/Loading';
 const MyProfile = () => {
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate('');
-    const { data: updatedUser, isLoading } = useQuery('updatedUser', () => fetch(`http://localhost:5000/user?email=${user.email}`, {
+    const { data: updatedUser, isLoading } = useQuery('updatedUser', () => fetch(`https://salty-scrubland-47217.herokuapp.com/user?email=${user.email}`, {
         method: "GET",
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`

@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 const CancelingModal = ({ cancelModal, setCancelModal, refetch }) => {
     const { _id, productName } = cancelModal;
     const handleCancelOrder = id => {
-        const url = `http://localhost:5000/purchase/${id}`;
+        const url = `https://salty-scrubland-47217.herokuapp.com/purchase/${id}`;
         fetch(url, {
             method: "DELETE",
             headers: {
