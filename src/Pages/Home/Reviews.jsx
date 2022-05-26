@@ -5,12 +5,7 @@ import Review from './Review';
 
 
 const Reviews = () => {
-    const { data: reviews, isLoading, refetch } = useQuery('reviews', () => fetch("https://salty-scrubland-47217.herokuapp.com/review", {
-        method: "GET",
-        headers: {
-            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-        }
-    }).then(res => res.json()))
+    const { data: reviews, isLoading, refetch } = useQuery('reviews', () => fetch("https://salty-scrubland-47217.herokuapp.com/review").then(res => res.json()))
 
     const start = reviews?.length - 6;
     const end = reviews?.length;
