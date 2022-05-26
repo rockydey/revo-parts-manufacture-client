@@ -24,7 +24,7 @@ const Reviews = () => {
             <div className="divider">
                 <h1 className='text-center text-3xl uppercase tracking-wide'>CUSTOMERS REVIEW</h1>
             </div>
-            <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5'>
+            <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 mt-10'>
                 {
                     reviews.slice(start, end).map(review => <Review
                         key={review._id}
