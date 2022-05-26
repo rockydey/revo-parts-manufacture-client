@@ -25,10 +25,10 @@ const Payment = () => {
 
     return (
         <div className=''>
-            <div class="card lg:w-1/2 mt-5 bg-base-100 shadow-xl">
-                <div class="card-body">
+            <div className="card lg:w-1/2 mt-5 bg-base-100 shadow-xl">
+                <div className="card-body">
                     <h1 className='card-title tracking-wider text-2xl text-secondary'>Hello, {order.name}</h1>
-                    <h2 class="tracking-wider font-semibold text-lg">Please Pay For <span className='text-primary'>Cars {order.productName}</span></h2>
+                    <h2 className="tracking-wider font-semibold text-lg">Please Pay For <span className='text-primary'>Cars {order.productName}</span></h2>
                     <p>Total orders: {order.orders}</p>
                     <p>Total Amount: ${parseInt(order.price) * parseInt(order.orders)}</p>
                 </div>
